@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>nosso mundinho ♡</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(#ffeef2, #f3e8ff);
+  text-align: center;
+}
+
+/* telas */
+.tela {
+  display: none;
+  height: 100vh;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ativa {
+  display: flex;
+}
+
+/* botão */
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: #ff8fa3;
+  color: white;
+  font-size: 16px;
+}
+
+/* corações */
+.coracao {
+  position: fixed;
+  bottom: -10px;
+  font-size: 20px;
+  animation: subir 5s linear;
+}
+
+@keyframes subir {
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="inicio" class="tela ativa">
+  <h2>nosso mundinho ♡</h2>
+  <p>cada fase é um pedacinho da nossa história…</p>
+  <button onclick="ir('f1')">começar</button>
+</div>
+
+<div id="f1" class="tela">
+  <p>Deus escreveu nosso encontro antes da gente imaginar.</p>
+  <button onclick="ir('f2')">continuar</button>
+</div>
+
+<div id="f2" class="tela">
+  <p>em algum momento, você virou lar…</p>
+  <button onclick="ir('f3')">continuar</button>
+</div>
+
+<div id="f3" class="tela">
+  <p>nem todo dia foi fácil… mas nunca foi sem você.</p>
+  <button onclick="ir('f4')">continuar</button>
+</div>
+
+<div id="f4" class="tela">
+  <p>1 ano com você… eu escolheria tudo de novo.</p>
+  <button onclick="ir('fim')">última fase</button>
+</div>
+
+<div id="fim" class="tela">
+  <p>você é minha oração respondida. feliz 1 ano ♡</p>
+  <button onclick="ir('inicio')">recomeçar</button>
+</div>
+
+<div id="segredo" class="tela">
+  <p>sabia que você ia clicar 😏 vem cá me dar um beijo</p>
+  <button onclick="ir('inicio')">voltar</button>
+</div>
+
+<button style="position:fixed; bottom:10px; right:10px;" onclick="ir('segredo')">
+  não clica aqui
+</button>
+
+<script>
+function ir(id) {
+  var telas = document.querySelectorAll('.tela');
+  for (var i = 0; i < telas.length; i++) {
+    telas[i].classList.remove('ativa');
+  }
+  document.getElementById(id).classList.add('ativa');
+}
+
+// corações
+setInterval(function() {
+  var c = document.createElement("div");
+  c.innerHTML = "♡";
+  c.className = "coracao";
+  c.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(c);
+
+  setTimeout(function() {
+    c.remove();
+  }, 5000);
+}, 500);
+</script>
+
+</body>
+</html>
