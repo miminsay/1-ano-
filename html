@@ -2,83 +2,51 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>level 1: nós dois ♡</title>
+<title>nosso mundinho ♡</title>
 
 <style>
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom, #ffeef2, #f3e8ff);
+  font-family: Arial, sans-serif;
+  background: linear-gradient(#ffeef2, #f3e8ff);
   overflow: hidden;
-  color: #444;
+  text-align: center;
 }
 
-/* container */
-.container {
-  position: absolute;
-  width: 100%;
+/* telas */
+.tela {
+  display: none;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
+  padding: 20px;
   justify-content: center;
   align-items: center;
-  opacity: 0;
-  transform: scale(0.95);
-  transition: all 0.6s ease;
-  text-align: center;
-  padding: 20px;
+  flex-direction: column;
 }
 
-.active {
-  opacity: 1;
-  transform: scale(1);
-  z-index: 1;
-}
-
-/* texto animado */
-p, h1 {
-  animation: fadeUp 1s ease;
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.ativa {
+  display: flex;
 }
 
 /* botão */
 button {
   margin-top: 20px;
-  padding: 12px 24px;
+  padding: 10px 20px;
   border: none;
-  border-radius: 25px;
-  background: #ffb6c1;
+  border-radius: 20px;
+  background: #ff8fa3;
   color: white;
   font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
 }
 
-button:hover {
-  transform: scale(1.05);
-  background: #ff8fa3;
-}
-
-/* corações subindo */
-.heart {
+/* corações */
+.coracao {
   position: fixed;
-  bottom: -20px;
-  color: #ff8fa3;
-  animation: floatUp linear infinite;
+  bottom: -10px;
   font-size: 20px;
+  animation: subir 5s linear;
 }
 
-@keyframes floatUp {
+@keyframes subir {
   to {
     transform: translateY(-110vh);
     opacity: 0;
@@ -89,73 +57,63 @@ button:hover {
 
 <body>
 
-<!-- Corações -->
-<script>
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.classList.add("heart");
-  heart.innerHTML = "♡";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = (3 + Math.random() * 3) + "s";
-  document.body.appendChild(heart);
-
-  setTimeout(() => {
-    heart.remove();
-  }, 6000);
-}
-
-setInterval(createHeart, 500);
-</script>
-
-<!-- TELAS -->
-
-<div id="inicio" class="container active">
-  <h1>nosso mundinho ♡</h1>
-  <p>onde cada fase é um pedacinho da nossa história…</p>
-  <button onclick="next('fase1')">começar</button>
+<div id="inicio" class="tela ativa">
+  <h2>nosso mundinho ♡</h2>
+  <p>cada fase é um pedacinho da nossa história…</p>
+  <button onclick="ir('f1')">começar</button>
 </div>
 
-<div id="fase1" class="container">
+<div id="f1" class="tela">
   <p>Deus escreveu nosso encontro antes da gente imaginar.</p>
-  <button onclick="next('fase2')">continuar</button>
+  <button onclick="ir('f2')">continuar</button>
 </div>
 
-<div id="fase2" class="container">
+<div id="f2" class="tela">
   <p>em algum momento, você virou lar…</p>
-  <button onclick="next('fase3')">continuar</button>
+  <button onclick="ir('f3')">continuar</button>
 </div>
 
-<div id="fase3" class="container">
+<div id="f3" class="tela">
   <p>nem todo dia foi fácil… mas nunca foi sem você.</p>
-  <button onclick="next('fase4')">continuar</button>
+  <button onclick="ir('f4')">continuar</button>
 </div>
 
-<div id="fase4" class="container">
-  <p>1 ano com você… e eu escolheria tudo de novo.</p>
-  <button onclick="next('final')">última fase</button>
+<div id="f4" class="tela">
+  <p>1 ano com você… eu escolheria tudo de novo.</p>
+  <button onclick="ir('fim')">última fase</button>
 </div>
 
-<div id="final" class="container">
-  <p>você é minha oração respondida. feliz 1 ano, meu amor ♡</p>
-  <button onclick="next('inicio')">recomeçar</button>
+<div id="fim" class="tela">
+  <p>você é minha oração respondida. feliz 1 ano ♡</p>
+  <button onclick="ir('inicio')">recomeçar</button>
 </div>
 
-<div id="segredo" class="container">
+<div id="segredo" class="tela">
   <p>sabia que você ia clicar 😏 vem cá me dar um beijo</p>
-  <button onclick="next('inicio')">voltar</button>
+  <button onclick="ir('inicio')">voltar</button>
 </div>
 
-<!-- botão secreto -->
-<button style="position:fixed; bottom:15px; right:15px;" onclick="next('segredo')">
+<button style="position:fixed; bottom:10px; right:10px;" onclick="ir('segredo')">
   não clica aqui
 </button>
 
 <script>
-function next(id) {
-  document.querySelectorAll('.container').forEach(el => el.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+function ir(id) {
+  document.querySelectorAll('.tela').forEach(el => el.classList.remove('ativa'));
+  document.getElementById(id).classList.add('ativa');
 }
+
+// corações
+setInterval(() => {
+  let c = document.createElement("div");
+  c.innerHTML = "♡";
+  c.className = "coracao";
+  c.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(c);
+
+  setTimeout(() => c.remove(), 5000);
+}, 400);
 </script>
 
 </body>
-</html>
+  </html>
