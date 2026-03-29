@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: linear-gradient(#ffeef2, #f3e8ff);
+  text-align: center;
+}
+
+.tela {
+  display: none;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ativa {
+  display: flex;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: #ff8fa3;
+  color: white;
+}
+
+.secreto {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+}
+
+.coracao {
+  position: fixed;
+  bottom: -10px;
+  animation: subir 5s linear;
+}
+
+@keyframes subir {
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
