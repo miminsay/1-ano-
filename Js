@@ -1,0 +1,14 @@
+function ir(id) {
+  document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
+  document.getElementById(id).classList.add('ativa');
+}
+
+setInterval(() => {
+  let c = document.createElement("div");
+  c.innerHTML = "♡";
+  c.className = "coracao";
+  c.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(c);
+
+  setTimeout(() => c.remove(), 5000);
+}, 500);
